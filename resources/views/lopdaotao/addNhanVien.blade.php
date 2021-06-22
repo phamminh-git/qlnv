@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Them Nhan Vien</title>
+</head>
+<body>
+    <div>{{$lopdaotao->ten}}</div>
+    <form action="{{route('lopdaotao.savenhanvien')}}" method="post">
+        @csrf
+        <input type="hidden" name="idlop" value="{{$lopdaotao->id}}">
+        <table border="1">
+            <tr>
+                <th>STT</th>
+                <th>Ten</th>
+                <th>Gioi Tinh</th>
+                <th>Dia Chi</th>
+                <th>So dien thoai</th>
+                <th>Email</th>
+                <th>Chuc nang</th>
+            </tr>
+            @foreach ($nhanviens as $nhanvien)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$nhanvien->ten}}</td>
+                    <td>{{$nhanvien->gioiTinh}}</td>
+                    <td>{{$nhanvien->diaChi}}</td>
+                    <td>{{$nhanvien->sdt}}</td>
+                    <td>{{$nhanvien->email}}</td>
+                    <td>
+                        <input type="checkbox" name="idnhanvien[]" value="{{$nhanvien->id}}">
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+        <input type="submit" value="Them nhan vien">
+    </form>
+</body>
+</html>
